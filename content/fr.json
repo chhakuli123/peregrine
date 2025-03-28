@@ -1,0 +1,10 @@
+{
+  "Home": {
+    "title": "Pèlerine"
+  },
+  "NotFound": {
+    "404": "404",
+    "dosent_exist_text": "Oups! La page que vous cherchez n'existe pas.",
+    "go_to_home": "Retour à l'accueil"
+  }
+}
