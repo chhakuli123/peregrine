@@ -7,6 +7,9 @@ import { getMessages } from 'next-intl/server';
 import '@/styles/globals.css';
 import { fontSans } from 'lib/fonts';
 import { siteConfig } from '@/config/site';
+import { AppProvider } from "@/providers/AppProvider"
+import { Sidebar } from "@/components/sidebar/sidebar"
+import { Header } from "@/components/header/header"
 
 export const metadata: Metadata = {
   title: {
@@ -41,13 +44,19 @@ export default async function RootLayout({
   const messages = await getMessages();
   return (
     <html lang={locale}>
-      <body
-        className={`min-h-screen antialiased ${fontSans.variable}`}
-      >
-        <NextIntlClientProvider messages={messages}>
-          {children}
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <body className={`min-h-screen antialiased ${fontSans.variable}`}>
+      <NextIntlClientProvider messages={messages}>
+        <AppProvider>
+          <div className="flex h-screen bg-background text-foreground">
+            <Sidebar />
+            <div className="flex flex-col flex-1 overflow-hidden">
+              <Header />
+              <main className="flex-1 overflow-auto">{children}</main>
+            </div>
+          </div>
+        </AppProvider>
+      </NextIntlClientProvider>
+    </body>
+  </html>
   );
 }
