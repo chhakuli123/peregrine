@@ -5,11 +5,13 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 
 import '@/styles/globals.css';
+
+import { AppProvider } from '@/providers/AppProvider';
 import { fontSans } from 'lib/fonts';
+
 import { siteConfig } from '@/config/site';
-import { AppProvider } from "@/providers/AppProvider"
-import { Sidebar } from "@/components/sidebar/sidebar"
-import { Header } from "@/components/header/header"
+import { Header } from '@/components/header/header';
+import { Sidebar } from '@/components/sidebar/sidebar';
 
 export const metadata: Metadata = {
   title: {
@@ -44,19 +46,19 @@ export default async function RootLayout({
   const messages = await getMessages();
   return (
     <html lang={locale}>
-    <body className={`min-h-screen antialiased ${fontSans.variable}`}>
-      <NextIntlClientProvider messages={messages}>
-        <AppProvider>
-          <div className="flex h-screen bg-background text-foreground">
-            <Sidebar />
-            <div className="flex flex-col flex-1 overflow-hidden">
-              <Header />
-              <main className="flex-1 overflow-auto">{children}</main>
+      <body className={`min-h-screen antialiased ${fontSans.variable}`}>
+        <NextIntlClientProvider messages={messages}>
+          <AppProvider>
+            <div className="flex h-screen bg-background text-foreground">
+              <Sidebar />
+              <div className="flex flex-1 flex-col overflow-hidden">
+                <Header />
+                <main className="flex-1 overflow-auto">{children}</main>
+              </div>
             </div>
-          </div>
-        </AppProvider>
-      </NextIntlClientProvider>
-    </body>
-  </html>
+          </AppProvider>
+        </NextIntlClientProvider>
+      </body>
+    </html>
   );
 }

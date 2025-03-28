@@ -1,58 +1,80 @@
-"use client"
+'use client';
 
-import { usePathname } from "next/navigation"
-import Link from "next/link"
-import { Search, Settings, User } from "lucide-react"
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useApp } from '@/providers/AppProvider';
+import { Search, Settings, User } from 'lucide-react';
 
-import { useApp } from "@/providers/AppProvider"
-import { Button, Input, Separator} from "../ui"
+import { Button, Input, Separator } from '../ui';
 
 export const Header = () => {
-  const pathname = usePathname()
-  const { currentProject, searchQuery, setSearchQuery } = useApp()
-  
+  const pathname = usePathname();
+  const { currentProject, searchQuery, setSearchQuery } = useApp();
+
   const getNormalizedPath = () => {
-    const parts = pathname.split("/");
+    const parts = pathname.split('/');
     return parts.length > 2 ? `/${parts[2]}` : pathname;
   };
-  
+
   const normalizedPath = getNormalizedPath();
 
   const getTitle = () => {
     switch (normalizedPath) {
-      case "/dashboard":
-        return "Dashboard";
-      case "/board":
-        return "Board";
-      case "/timeline":
-        return "Timeline";
-      case "/calendar":
-        return "Calendar";
-      case "/settings":
-        return "Settings";
-      case "/team":
-        return "Team";
+      case '/dashboard':
+        return 'Dashboard';
+      case '/board':
+        return 'Board';
+      case '/timeline':
+        return 'Timeline';
+      case '/calendar':
+        return 'Calendar';
+      case '/settings':
+        return 'Settings';
+      case '/team':
+        return 'Team';
       default:
-        return currentProject?.name || "Project";
+        return currentProject?.name || 'Project';
     }
   };
 
   return (
-    <header className="flex items-center justify-between p-4 border-b bg-background/80 backdrop-blur-sm">
+    <header className="flex items-center justify-between border-b bg-background/80 p-4 backdrop-blur-sm">
       <div className="flex items-center gap-4">
         <h1 className="text-xl font-semibold">{getTitle()}</h1>
-        {["/dashboard", "/board", "/timeline", "/calendar"].includes(normalizedPath) && (
+        {['/dashboard', '/board', '/timeline', '/calendar'].includes(
+          normalizedPath
+        ) && (
           <div className="flex items-center gap-2">
-            <Button variant="outline" size="sm" className={pathname === "/dashboard" ? "bg-primary/10" : ""} asChild>
+            <Button
+              variant="outline"
+              size="sm"
+              className={pathname === '/dashboard' ? 'bg-primary/10' : ''}
+              asChild
+            >
               <Link href="/dashboard">Dashboard</Link>
             </Button>
-            <Button variant="outline" size="sm" className={pathname === "/board" ? "bg-primary/10" : ""} asChild>
+            <Button
+              variant="outline"
+              size="sm"
+              className={pathname === '/board' ? 'bg-primary/10' : ''}
+              asChild
+            >
               <Link href="/board">Board</Link>
             </Button>
-            <Button variant="outline" size="sm" className={pathname === "/timeline" ? "bg-primary/10" : ""} asChild>
+            <Button
+              variant="outline"
+              size="sm"
+              className={pathname === '/timeline' ? 'bg-primary/10' : ''}
+              asChild
+            >
               <Link href="/timeline">Timeline</Link>
             </Button>
-            <Button variant="outline" size="sm" className={pathname === "/calendar" ? "bg-primary/10" : ""} asChild>
+            <Button
+              variant="outline"
+              size="sm"
+              className={pathname === '/calendar' ? 'bg-primary/10' : ''}
+              asChild
+            >
               <Link href="/calendar">Calendar</Link>
             </Button>
           </div>
@@ -65,7 +87,7 @@ export const Header = () => {
           <Input
             type="search"
             placeholder="Search..."
-            className="w-64 pl-9 bg-background border-muted"
+            className="w-64 border-muted bg-background pl-9"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -81,6 +103,5 @@ export const Header = () => {
         </Button>
       </div>
     </header>
-  )
-}
-
+  );
+};

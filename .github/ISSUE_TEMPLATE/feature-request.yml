@@ -16,7 +16,7 @@ body:
       description: Tell us in details about the problem.
     validations:
       required: true
-  
+
   - type: textarea
     id: suggested-solution
     attributes:
