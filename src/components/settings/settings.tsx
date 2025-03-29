@@ -1,11 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui';
 import { useToast } from '@/hooks/use-toast';
 import GeneralSettings from './general-settings';
 import AppearanceSettings from './appearance-settings';
-
 
 export interface UserSettings {
   general: {
