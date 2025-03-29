@@ -1,11 +1,5 @@
-import { useTranslations } from 'next-intl';
+import { redirect } from 'next/navigation';
 
 export default function Home() {
-  const t = useTranslations('Home');
-
-  return (
-    <h1 className="mt-12 text-center text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
-      {t('title')}
-    </h1>
-  );
+  redirect('/dashboard');
 }
