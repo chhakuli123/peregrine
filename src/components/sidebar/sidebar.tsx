@@ -55,10 +55,8 @@ export function Sidebar() {
     (task) => task.projectId === currentProject.id && task.status === 'todo'
   ).length;
 
-  // Handle project click - properly update the current project
   const handleProjectClick = (project: Project) => {
     setCurrentProject(project);
-    // Navigate to board page to show the project tasks
     router.push('/dashboard');
   };
 
@@ -80,7 +78,7 @@ export function Sidebar() {
             <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary font-bold text-primary-foreground">
               P
             </div>
-            <h2 className="font-semibold">ProjectMaster</h2>
+            <h2 className="font-semibold">Peregrine</h2>
           </div>
         )}
         {collapsed && (
