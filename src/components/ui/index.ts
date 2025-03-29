@@ -10,6 +10,7 @@ export {
   DialogFooter,
   DialogHeader,
   DialogTitle,
+  DialogTrigger
 } from './dialog';
 export {
   Card,
@@ -46,3 +47,5 @@ export {
   DropdownMenuSubTrigger,
   DropdownMenuRadioGroup,
 } from './dropdown-menu';
+export { Avatar, AvatarImage, AvatarFallback } from './avatar';
+export { Tabs, TabsList, TabsTrigger, TabsContent } from './tabs';
