@@ -47,6 +47,26 @@ export default function Dashboard() {
   return (
     <div className="space-y-6 p-6">
       <h1 className="text-3xl font-bold">Dashboard</h1>
+      {upcomingDeadlines.length > 0 && (
+        <Alert className="border-amber-500/50 bg-amber-500/10 text-amber-500">
+          <CalendarClock className="h-5 w-5" />
+          <AlertTitle>Upcoming Deadlines</AlertTitle>
+          <AlertDescription>
+            You have {upcomingDeadlines.length} task
+            {upcomingDeadlines.length > 1 ? 's' : ''} due in the next 7 days.
+            <div className="mt-2">
+              <Button
+                variant="outline"
+                size="sm"
+                className="border-amber-500/50 text-amber-500 hover:bg-amber-700/30"
+                asChild
+              >
+                <Link href="/calendar">View Calendar</Link>
+              </Button>
+            </div>
+          </AlertDescription>
+        </Alert>
+      )}
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
         <Card>
           <CardHeader className="pb-2">
@@ -82,26 +102,6 @@ export default function Dashboard() {
           </CardContent>
         </Card>
       </div>
-      {upcomingDeadlines.length > 0 && (
-        <Alert className="border-amber-500/50 bg-amber-500/10 text-amber-500">
-          <CalendarClock className="h-5 w-5" />
-          <AlertTitle>Upcoming Deadlines</AlertTitle>
-          <AlertDescription>
-            You have {upcomingDeadlines.length} task
-            {upcomingDeadlines.length > 1 ? 's' : ''} due in the next 7 days.
-            <div className="mt-2">
-              <Button
-                variant="outline"
-                size="sm"
-                className="border-amber-500/50 text-amber-500"
-                asChild
-              >
-                <Link href="/calendar">View Calendar</Link>
-              </Button>
-            </div>
-          </AlertDescription>
-        </Alert>
-      )}
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <TaskStatusChart
