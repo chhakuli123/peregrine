@@ -2,69 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
-
 @layer base {
   :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 145 80% 60%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 145 80% 60%;
+    --radius: 0.75rem;
+    --accent-color: #27c16f;
+  }
+
+  .dark {
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
-
     --card: 240 10% 3.9%;
     --card-foreground: 0 0% 98%;
-
     --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;
-
     --primary: 145 80% 60%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 220 50% 20%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
-
-    --muted: 220 30% 15%;
-    --muted-foreground: 215 15% 60%;
-
-    --accent: 144 30% 10%;
-    --accent-foreground: 145 80% 90%;
-
-    --destructive: 0 70% 40%;
-    --destructive-foreground: 0 0% 95%;
-
-    --border: 220 40% 20%;
-    --input: 220 40% 20%;
-    --ring: 145 90% 50%;
-
-    --radius: 0.75rem;
-  }
-  .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 145 80% 60%;
   }
 }
 
@@ -75,4 +57,141 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Density styles */
+html[data-density="compact"] {
+  --spacing-unit: 0.5rem;
+}
+
+html[data-density="comfortable"] {
+  --spacing-unit: 1rem;
+}
+
+html[data-density="spacious"] {
+  --spacing-unit: 1.5rem;
+}
+
+/* Apply density to components */
+html[data-density="compact"] .card {
+  @apply p-3;
+}
+
+html[data-density="comfortable"] .card {
+  @apply p-4;
+}
+
+html[data-density="spacious"] .card {
+  @apply p-6;
+}
+
+html[data-density="compact"] .card-header {
+  @apply pb-2 pt-2 px-3;
+}
+
+html[data-density="comfortable"] .card-header {
+  @apply pb-3 pt-3 px-4;
+}
+
+html[data-density="spacious"] .card-header {
+  @apply pb-4 pt-4 px-6;
+}
+
+html[data-density="compact"] .card-content {
+  @apply p-3;
+}
+
+html[data-density="comfortable"] .card-content {
+  @apply p-4;
+}
+
+html[data-density="spacious"] .card-content {
+  @apply p-6;
+}
+
+html[data-density="compact"] .card-footer {
+  @apply p-3;
+}
+
+html[data-density="comfortable"] .card-footer {
+  @apply p-4;
+}
+
+html[data-density="spacious"] .card-footer {
+  @apply p-6;
+}
+
+html[data-density="compact"] .button {
+  @apply py-1 px-2 text-sm;
+}
+
+html[data-density="comfortable"] .button {
+  @apply py-2 px-4;
+}
+
+html[data-density="spacious"] .button {
+  @apply py-3 px-6 text-base;
+}
+
+html[data-density="compact"] .input, html[data-density="compact"] .select {
+  @apply h-8 text-sm px-2;
+}
+
+html[data-density="comfortable"] .input, html[data-density="comfortable"] .select {
+  @apply h-10 px-3;
+}
+
+html[data-density="spacious"] .input, html[data-density="spacious"] .select {
+  @apply h-12 text-base px-4;
+}
+
+html[data-density="compact"] .task-card {
+  @apply p-2;
+}
+
+html[data-density="comfortable"] .task-card {
+  @apply p-4;
+}
+
+html[data-density="spacious"] .task-card {
+  @apply p-6;
+}
+
+html[data-density="compact"] .sidebar-item {
+  @apply py-1;
+}
+
+html[data-density="comfortable"] .sidebar-item {
+  @apply py-2;
+}
+
+html[data-density="spacious"] .sidebar-item {
+  @apply py-3;
+}
+
+/* Accent color styles */
+.accent-color {
+  color: var(--accent-color);
+}
+
+.bg-accent-color {
+  background-color: var(--accent-color);
+}
+
+.border-accent-color {
+  border-color: var(--accent-color);
+}
+
+/* Apply accent color to primary elements */
+.btn-primary {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.text-primary {
+  color: var(--accent-color);
+}
+
+.border-primary {
+  border-color: var(--accent-color);
 }

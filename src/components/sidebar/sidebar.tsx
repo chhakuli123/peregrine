@@ -75,14 +75,14 @@ export function Sidebar() {
       >
         {!collapsed && (
           <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary font-bold text-primary-foreground">
+            <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary font-bold text-black">
               P
             </div>
             <h2 className="font-semibold">Peregrine</h2>
           </div>
         )}
         {collapsed && (
-          <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary font-bold text-primary-foreground">
+          <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary font-bold text-black">
             P
           </div>
         )}
@@ -104,7 +104,7 @@ export function Sidebar() {
       <div className={cn('px-3 py-2', collapsed && 'px-2')}>
         <Button
           className={cn(
-            'w-full gap-2',
+            'w-full gap-2 text-black',
             collapsed ? 'justify-center px-2' : 'justify-start'
           )}
           onClick={() => setIsAddProjectOpen(true)}

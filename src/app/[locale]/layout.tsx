@@ -6,12 +6,14 @@ import { getMessages } from 'next-intl/server';
 
 import '@/styles/globals.css';
 
+import { Toaster } from '@/components/ui/toaster';
 import { AppProvider } from '@/providers/AppProvider';
 import { fontSans } from 'lib/fonts';
 
 import { siteConfig } from '@/config/site';
 import { Header } from '@/components/header/header';
 import { Sidebar } from '@/components/sidebar/sidebar';
+import { ThemeProvider } from '@/providers/theme-provider';
 
 export const metadata: Metadata = {
   title: {
@@ -30,11 +32,11 @@ type RootLayoutProps = Readonly<{
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
 }>;
-
 export default async function RootLayout({
   children,
   params,
 }: RootLayoutProps) {
+
   const { locale } = await params;
 
   // Ensure that the incoming `locale` is valid
@@ -44,10 +46,13 @@ export default async function RootLayout({
 
   // Providing all messages to the client
   const messages = await getMessages();
+  
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning data-density="comfortable">
       <body className={`min-h-screen antialiased ${fontSans.variable}`}>
-        <NextIntlClientProvider messages={messages}>
+      <NextIntlClientProvider messages={messages}>
+
+      <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <AppProvider>
             <div className="flex h-screen bg-background text-foreground">
               <Sidebar />
@@ -56,9 +61,15 @@ export default async function RootLayout({
                 <main className="flex-1 overflow-auto">{children}</main>
               </div>
             </div>
+            <Toaster />
           </AppProvider>
+          <Toaster />
+
+        </ThemeProvider>
         </NextIntlClientProvider>
+
       </body>
+
     </html>
   );
 }
